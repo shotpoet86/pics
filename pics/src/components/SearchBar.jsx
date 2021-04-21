@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-  state = { term: 'Enter info here' };
+  state = { term: '' };
+  /*function 'onFormSubmit' takes 'event' from 'onSubmit' i.e 'enter' as argument, then
+   * calls 'this.props.onSubmit' and passes current state as argument which is stored in 'term'*/
+  onFormSubmit = (event) => {
+    /*prevents page from refreshing until user is done by pressing 'enter'*/
+    event.preventDefault();
+    this.props.onSubmit(this.state.term);
+  };
+
   render() {
     return (
       <div className="ui segment">
-        <form className="ui form" action="">
+        <form onSubmit={this.onFormSubmit} className="ui form" action="">
           <div className="field">
             <label htmlFor="">Image Search: </label>
             <input
