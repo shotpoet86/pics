@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import unsplash from '../api/unsplash';
 import '../App.css';
 import SearchBar from './SearchBar';
-import unsplash from '../api/unsplash';
+import ImageList from './ImageList';
 
 class App extends Component {
   state = { images: [] };
@@ -15,7 +16,6 @@ class App extends Component {
           query: term,
         },
       });
-      console.log(res.data);
       return this.setState({ images: res.data });
     } catch (e) {
       console.log(e);
@@ -28,8 +28,9 @@ class App extends Component {
       <div className="ui container" style={{ marginTop: '10px' }}>
         {/*displays 'onSearchSubmit' function which returns 'term' from 'onSearchSubmit' class*/}
         <SearchBar onSubmit={this.onSearchSubmit} />
-        Found: {this.state.images.length} images
+        <ImageList images={this.state.images} />
       </div>
+
     );
   }
 }

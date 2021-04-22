@@ -8,7 +8,6 @@ class SearchBar extends Component {
     /*prevents page from refreshing until user is done by pressing 'enter'*/
     event.preventDefault();
     this.props.onSubmit(this.state.term);
-    console.log(this.props);
   };
 
   render() {
